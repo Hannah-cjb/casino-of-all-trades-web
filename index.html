@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#080512" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:;" />
+  <link rel="icon" href="icon.png" />
+  <title>The Casino of All Trades</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="extra.css" />
+  <link rel="stylesheet" href="mobile.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">&#9673;</span>
+      <span class="brand-text">THE CASINO <b>OF ALL TRADES</b></span>
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="balance-pill" id="balancePill">
+      <span class="balance-label">Balance</span>
+      <span class="balance-value" id="balanceValue">0</span>
+    </div>
+    <button class="ghost-btn chip-topup" id="topupBtn" data-tip="Adds 1,000 free chips to your balance.">+1,000 CHIPS</button>
+    <button class="ghost-btn" id="muteBtn" data-tip="Turns game sound effects on or off.">SFX ON</button>
+  </header>
+
+  <main>
+    <section id="lobby" class="screen active">
+      <div class="lobby-hero">
+        <p class="eyebrow">PLAY MONEY &middot; NO REAL STAKES</p>
+        <h1>Twelve tables. <span>One bad decision at a time.</span></h1>
+        <p class="lobby-sub">Every classic in the house, one wallet, zero mercy. The house always has an edge &mdash; beat it anyway.</p>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card card-blackjack" data-game="blackjack" data-tip="Open Blackjack: beat the dealer to 21 without busting.">
+          <div class="game-art">
+            <span class="art-suit red">&#9829;</span>
+            <span class="art-suit">&#9824;</span>
+          </div>
+          <div class="game-meta">
+            <h2>Blackjack</h2>
+            <p>Beat the dealer to 21. Blackjack pays 3:2.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-poker" data-game="poker" data-tip="Open Texas Hold'em: take the bots' chips with the best hand.">
+          <div class="game-art">
+            <span class="art-suit">&#9827;</span>
+            <span class="art-suit red">&#9830;</span>
+          </div>
+          <div class="game-meta">
+            <h2>Texas Hold'em</h2>
+            <p>Four seats. Blinds 10/20. Take the bots' chips.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-roulette" data-game="roulette" data-tip="Open Roulette: bet on where the ball lands on a single-zero wheel.">
+          <div class="game-art">
+            <div class="mini-wheel"></div>
+          </div>
+          <div class="game-meta">
+            <h2>Roulette</h2>
+            <p>European wheel, 37 pockets. Spin for 35:1.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-slots" data-game="slots" data-tip="Open Slots: spin three reels and match symbols for multipliers.">
+          <div class="game-art">
+            <div class="art-reels"><span>7</span><span>&#9670;</span><span>7</span></div>
+          </div>
+          <div class="game-meta">
+            <h2>Slots</h2>
+            <p>Three reels, six symbols. Triple sevens pay 150&times;.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-baccarat" data-game="baccarat" data-tip="Open Baccarat: bet on Player, Banker or Tie, closest to 9.">
+          <div class="game-art">
+            <span class="art-suit">&#9824;</span>
+            <span class="art-suit red">&#9829;</span>
+          </div>
+          <div class="game-meta">
+            <h2>Baccarat</h2>
+            <p>Player, banker or tie. Banker pays 0.95:1.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-craps" data-game="craps" data-tip="Open Craps: bet on the dice and ride the pass line.">
+          <div class="game-art">
+            <div class="art-dice"><div class="art-die d5"></div><div class="art-die d2"></div></div>
+          </div>
+          <div class="game-meta">
+            <h2>Craps</h2>
+            <p>Pass or don't pass. Make the point, dodge the seven.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-videopoker" data-game="videopoker" data-tip="Open Video Poker: Jacks or Better draw poker with a paytable.">
+          <div class="game-art">
+            <span class="art-suit red">&#9830;</span>
+            <span class="art-suit">&#9827;</span>
+          </div>
+          <div class="game-meta">
+            <h2>Video Poker</h2>
+            <p>Jacks or Better draw poker. Hold, redraw, get paid.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-keno" data-game="keno" data-tip="Open Keno: pick ten numbers and watch twenty balls drop.">
+          <div class="game-art">
+            <div class="art-balls"><span>7</span><span>21</span><span>64</span><span>38</span></div>
+          </div>
+          <div class="game-meta">
+            <h2>Keno</h2>
+            <p>Pick ten spots. Twenty balls drop. Catch enough to cash.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-threecard" data-game="threecard" data-tip="Open Three Card Poker: beat the dealer with the better three-card hand.">
+          <div class="game-art">
+            <div class="art-trio">
+              <span class="art-mini red">A&#9829;</span>
+              <span class="art-mini">9&#9820;</span>
+              <span class="art-mini red">3&#9830;</span>
+            </div>
+          </div>
+          <div class="game-meta">
+            <h2>Three Card Poker</h2>
+            <p>Ante, look at three, then play or fold. Dealer needs a queen.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-letitride" data-game="letitride" data-tip="Open Let It Ride: three bets, two chances to pull back, one poker paytable.">
+          <div class="game-art">
+            <div class="art-ride">
+              <span class="art-mini">10&#9827;</span>
+              <span class="art-ride-arrow">&uarr;</span>
+              <span class="art-mini red">J&#9829;</span>
+            </div>
+          </div>
+          <div class="game-meta">
+            <h2>Let It Ride</h2>
+            <p>Three bets, two pull-backs. Pair of tens or better pays.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-war" data-game="war" data-tip="Open War: one card each, highest card wins, ties go to war.">
+          <div class="game-art">
+            <div class="art-war">
+              <span class="art-mini red">K&#9829;</span>
+              <em>VS</em>
+              <span class="art-mini">Q&#9824;</span>
+            </div>
+          </div>
+          <div class="game-meta">
+            <h2>War</h2>
+            <p>Flip one card each. High card takes it. Ties get ugly.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+
+        <button class="game-card card-sicbo" data-game="sicbo" data-tip="Open Sic Bo: bet on three dice and the totals they make.">
+          <div class="game-art">
+            <div class="art-dice art-dice-triple">
+              <div class="art-die d6"></div>
+              <div class="art-die d2"></div>
+              <div class="art-die d5"></div>
+            </div>
+          </div>
+          <div class="game-meta">
+            <h2>Sic Bo</h2>
+            <p>Three dice. Back Small, Big, triples or exact totals.</p>
+            <span class="play-tag">Play &rarr;</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="lobby-foot">
+        <button id="refillBtn" class="refill-btn" data-tip="Adds 1,000 free chips to your balance.">Chip me up &middot; +1,000</button>
+        <p class="footnote">Free play money &mdash; top up any time from the header.</p>
+      </div>
+    </section>
+
+    <section id="roulette" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Roulette <span class="tag">European &middot; single zero</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="roulette" data-tip="Open the Roulette guide.">? GUIDE</button>
+        <div class="pot-pill">At risk <b id="rouletteRisk">0</b></div>
+      </div>
+
+      <div class="roulette-layout">
+        <div class="wheel-panel">
+          <div class="wheel-wrap">
+            <div class="wheel-pointer"></div>
+            <canvas id="wheelCanvas" width="440" height="440"></canvas>
+            <div class="wheel-hub">ALL TRADES</div>
+          </div>
+          <div id="rouletteResult" class="roulette-result"></div>
+          <div class="history-row">
+            <span class="muted small">RECENT</span>
+            <div id="rouletteHistory" class="history"></div>
+          </div>
+          <button id="spinBtn" class="spin-btn" data-tip="Spins the wheel and settles every chip you placed.">SPIN THE WHEEL</button>
+        </div>
+
+        <div class="board-panel">
+          <div class="chips" id="rouletteChips"></div>
+          <div id="rouletteBoard" class="roulette-board"></div>
+          <div class="bet-tools">
+            <div id="rouletteBets" class="bet-list">No chips placed.</div>
+            <div class="bet-actions">
+              <button id="undoBet" class="ghost-btn" data-tip="Removes your most recently placed chip.">Undo</button>
+              <button id="clearBets" class="ghost-btn" data-tip="Removes every chip from the table.">Clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blackjack" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Blackjack <span class="tag">6 decks &middot; dealer stands on 17</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="blackjack" data-tip="Open the Blackjack guide.">? GUIDE</button>
+        <div class="pot-pill">Bet <b id="bjBetHead">0</b></div>
+      </div>
+
+      <div class="bj-table">
+        <div class="hand-block">
+          <div class="hand-label">Dealer <span id="dealerTotal" class="total"></span></div>
+          <div id="dealerCards" class="cards"></div>
+        </div>
+
+        <div id="bjMessage" class="table-message">Place your bet to begin.</div>
+
+        <div class="hand-block">
+          <div class="hand-label">You</div>
+          <div id="playerHands" class="player-hands"></div>
+        </div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="bjChips"></div>
+        <div class="bet-readout">Bet <b id="bjBet">0</b></div>
+        <div class="action-row">
+          <button id="bjDeal" class="primary-btn" data-tip="Deals a new hand with your current bet.">DEAL</button>
+          <button id="bjHit" class="action-btn" data-tip="Draws another card. Go over 21 and you bust." disabled>Hit</button>
+          <button id="bjStand" class="action-btn" data-tip="Ends your turn and lets the dealer play." disabled>Stand</button>
+          <button id="bjDouble" class="action-btn" data-tip="Doubles your bet, draws one card, then stands." disabled>Double</button>
+          <button id="bjSplit" class="action-btn" data-tip="Splits a matching pair into two hands with an extra bet." disabled>Split</button>
+          <button id="bjNew" class="ghost-btn" data-tip="Clears the table for a fresh bet." disabled>New Hand</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="poker" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Texas Hold'em <span class="tag">blinds 10 / 20</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="poker" data-tip="Open the Texas Hold'em guide.">? GUIDE</button>
+        <div class="pot-pill">Pot <b id="pokerPot">0</b></div>
+      </div>
+
+      <div class="poker-table">
+        <div class="seat seat-top" id="seat1"></div>
+        <div class="seat seat-left" id="seat2"></div>
+        <div class="seat seat-right" id="seat3"></div>
+
+        <div class="community">
+          <div class="community-label">Blinds 10 / 20 &middot; No-Limit</div>
+          <div id="communityCards" class="cards community-cards"></div>
+          <div id="pokerMessage" class="table-message">Shuffling up...</div>
+        </div>
+
+        <div class="seat seat-bottom" id="seat0"></div>
+      </div>
+
+      <div class="poker-controls">
+        <div id="pokerToCall" class="poker-info">Waiting for the hand to start...</div>
+        <div class="action-row">
+          <button id="pokerFold" class="action-btn" data-tip="Folds your hand and gives up any chips already in the pot." disabled>Fold</button>
+          <button id="pokerCall" class="primary-btn" data-tip="Matches the current bet, or checks when nothing is owed." disabled>Check</button>
+          <div class="raise-wrap">
+            <input type="range" id="pokerRaiseRange" min="40" max="500" step="10" value="40" disabled />
+            <span class="raise-amt" id="pokerRaiseAmt">40</span>
+            <button id="pokerRaise" class="action-btn" data-tip="Raises the bet to the amount shown on the slider." disabled>Raise</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="slots" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Slots <span class="tag">3 reels &middot; 6 symbols</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="slots" data-tip="Open the Slots guide.">? GUIDE</button>
+        <div class="pot-pill">Spin <b id="slotsBet">0</b></div>
+      </div>
+
+      <div class="slots-stage">
+        <div class="reels">
+          <div class="reel" id="reel0">7</div>
+          <div class="reel" id="reel1">&#9670;</div>
+          <div class="reel" id="reel2">7</div>
+        </div>
+        <div id="slotsMessage" class="table-message">Pick a chip and spin.</div>
+        <div class="paytable" id="slotsPaytable"></div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="slotsChips"></div>
+        <div class="action-row">
+          <button id="slotsSpin" class="primary-btn" data-tip="Spins the reels for the selected chip value.">SPIN</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="baccarat" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Baccarat <span class="tag">punto banco</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="baccarat" data-tip="Open the Baccarat guide.">? GUIDE</button>
+        <div class="pot-pill">Bet <b id="bacBet">0</b></div>
+      </div>
+
+      <div class="baccarat-table">
+        <div class="bac-hand">
+          <div class="hand-label">Player <span id="bacPlayerTotal" class="total"></span></div>
+          <div id="bacPlayerCards" class="cards"></div>
+        </div>
+
+        <div id="bacMessage" class="table-message">Choose player, banker or tie.</div>
+
+        <div class="bac-hand">
+          <div class="hand-label">Banker <span id="bacBankerTotal" class="total"></span></div>
+          <div id="bacBankerCards" class="cards"></div>
+        </div>
+
+        <div id="bacWager" class="bac-wager">No bet placed.</div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="bacChips"></div>
+        <div class="bac-bets">
+          <button class="bac-spot" data-bac="player" data-tip="Bet on Player. Pays 1:1."><span>PLAYER</span><small>1:1</small></button>
+          <button class="bac-spot" data-bac="banker" data-tip="Bet on Banker. Pays 0.95:1."><span>BANKER</span><small>0.95:1</small></button>
+          <button class="bac-spot" data-bac="tie" data-tip="Bet on a Tie. Pays 8:1; Player and Banker bets push."><span>TIE</span><small>8:1</small></button>
+        </div>
+        <div class="action-row">
+          <button id="bacDeal" class="primary-btn" data-tip="Deals the cards for your chosen bet.">DEAL</button>
+          <button id="bacClear" class="ghost-btn" data-tip="Removes your bet from the table.">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="craps" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Craps <span class="tag">pass line</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="craps" data-tip="Open the Craps guide.">? GUIDE</button>
+        <div class="pot-pill">Wager <b id="crapsBet">0</b></div>
+      </div>
+
+      <div class="craps-table">
+        <div id="crapsPuck" class="craps-puck">COME OUT</div>
+        <div class="dice" id="crapsDice">
+          <div class="die" id="die0"></div>
+          <div class="die" id="die1"></div>
+        </div>
+        <div id="crapsMessage" class="table-message">Place a pass or don't pass bet.</div>
+        <div class="craps-history" id="crapsHistory"></div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="crapsChips"></div>
+        <div class="bac-bets">
+          <button class="bac-spot" data-craps="pass" data-tip="Bet on Pass Line. Pays 1:1; win on 7 or 11 come-out."><span>PASS LINE</span><small>1:1</small></button>
+          <button class="bac-spot" data-craps="dont" data-tip="Bet on Don't Pass. Pays 1:1; 12 pushes on the come-out."><span>DON'T PASS</span><small>1:1</small></button>
+        </div>
+        <div class="action-row">
+          <button id="crapsRoll" class="primary-btn" data-tip="Rolls the dice to resolve your bet or set the point.">ROLL</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="videopoker" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Video Poker <span class="tag">jacks or better</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="videopoker" data-tip="Open the Video Poker guide.">? GUIDE</button>
+        <div class="pot-pill">Bet <b id="vpBet">0</b></div>
+      </div>
+
+      <div class="vp-table">
+        <div id="vpSlots" class="vp-slots"></div>
+        <div id="vpMessage" class="table-message">Pick a chip, then deal.</div>
+        <div class="paytable vp-paytable" id="vpPaytable"></div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="vpChips"></div>
+        <div class="action-row">
+          <button id="vpDeal" class="primary-btn" data-tip="Deals five cards for the selected bet.">DEAL</button>
+          <button id="vpDraw" class="action-btn" data-tip="Replaces cards you did not hold, then pays the hand." disabled>DRAW</button>
+          <button id="vpClear" class="ghost-btn" data-tip="Resets the table for a fresh hand." disabled>Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="keno" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Keno <span class="tag">pick 10 &middot; draw 20</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="keno" data-tip="Open the Keno guide.">? GUIDE</button>
+        <div class="pot-pill">Ticket <b id="kenoBet">0</b></div>
+      </div>
+
+      <div class="keno-layout">
+        <div class="keno-board">
+          <div id="kenoGrid" class="keno-grid"></div>
+          <div class="keno-draw-row">
+            <span class="muted small">DRAWN</span>
+            <div id="kenoDraws" class="keno-draws"></div>
+          </div>
+        </div>
+        <div class="keno-side">
+          <div id="kenoMessage" class="table-message">Pick 10 numbers, then draw.</div>
+          <div id="kenoPaytable" class="paytable keno-paytable"></div>
+        </div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="kenoChips"></div>
+        <div class="action-row">
+          <button id="kenoClear" class="ghost-btn" data-tip="Clears your picked numbers and the last draw.">Clear Picks</button>
+          <button id="kenoDraw" class="primary-btn" data-tip="Draws twenty balls for the ticket price.">DRAW</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="threecard" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Three Card Poker <span class="tag">ante + play</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="threecard" data-tip="Open the Three Card Poker guide.">? GUIDE</button>
+        <div class="pot-pill">Ante <b id="tcpAnte">0</b></div>
+      </div>
+
+      <div class="tcp-table">
+        <div class="tcp-hand">
+          <div class="hand-label">Dealer <span id="tcpDealerLabel" class="total"></span></div>
+          <div id="tcpDealerCards" class="cards tcp-cards"></div>
+        </div>
+        <div id="tcpMessage" class="table-message">Place an ante and deal.</div>
+        <div class="tcp-hand">
+          <div class="hand-label">You <span id="tcpPlayerLabel" class="total"></span></div>
+          <div id="tcpPlayerCards" class="cards tcp-cards"></div>
+        </div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="tcpChips"></div>
+        <div class="action-row">
+          <button id="tcpFold" class="action-btn" data-tip="Fold and lose the ante without seeing the dealer's hand." disabled>Fold</button>
+          <button id="tcpPlay" class="primary-btn" data-tip="Match your ante to reveal the dealer and settle the hand." disabled>Play 1&times;</button>
+          <button id="tcpDeal" class="primary-btn" data-tip="Posts the ante and deals three cards each.">DEAL</button>
+          <button id="tcpNew" class="ghost-btn" data-tip="Clears the table for a fresh ante." disabled>New Hand</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="letitride" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Let It Ride <span class="tag">three bets &middot; two pull-backs</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="letitride" data-tip="Open the Let It Ride guide.">? GUIDE</button>
+        <div class="pot-pill">In play <b id="lirBet">0</b></div>
+      </div>
+
+      <div class="lir-table">
+        <div class="lir-row">
+          <div class="hand-label">Community</div>
+          <div id="lirCommunity" class="cards lir-cards"></div>
+        </div>
+        <div id="lirMessage" class="table-message">Deal to start. Three equal bets go on the table.</div>
+        <div class="lir-row">
+          <div class="hand-label">Your cards <span id="lirHandName" class="total"></span></div>
+          <div id="lirPlayer" class="cards lir-cards"></div>
+        </div>
+        <div class="lir-bets" id="lirBets"></div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="lirChips"></div>
+        <div class="action-row">
+          <button id="lirPull" class="action-btn" data-tip="Takes back the next bet and reveals the community card." disabled>Pull Back</button>
+          <button id="lirRide" class="primary-btn" data-tip="Keeps every bet in play and reveals the next card." disabled>Let It Ride</button>
+          <button id="lirDeal" class="primary-btn" data-tip="Posts three equal bets and deals your three cards.">DEAL</button>
+          <button id="lirNew" class="ghost-btn" data-tip="Clears the table for a fresh deal." disabled>New Hand</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="war" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>War <span class="tag">high card wins</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="war" data-tip="Open the War guide.">? GUIDE</button>
+        <div class="pot-pill">Wager <b id="warBet">0</b></div>
+      </div>
+
+      <div class="war-table">
+        <div class="war-side">
+          <div class="hand-label">Dealer</div>
+          <div id="warDealer" class="cards war-cards"></div>
+        </div>
+        <div class="war-vs">VS</div>
+        <div id="warMessage" class="table-message">Place a bet and deal. High card wins.</div>
+        <div class="war-side">
+          <div class="hand-label">You</div>
+          <div id="warPlayer" class="cards war-cards"></div>
+        </div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="warChips"></div>
+        <div class="action-row">
+          <button id="warSurrender" class="action-btn" data-tip="Surrenders after a tie and returns half your wager." disabled>Surrender</button>
+          <button id="warGo" class="primary-btn" data-tip="Doubles the wager after a tie and deals until the tie breaks." disabled>Go to War</button>
+          <button id="warDeal" class="primary-btn" data-tip="Posts the wager and flips one card each.">DEAL</button>
+          <button id="warNew" class="ghost-btn" data-tip="Clears the table for a fresh wager." disabled>New Hand</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="sicbo" class="screen">
+      <div class="screen-head">
+        <button class="ghost-btn back-btn" data-back data-tip="Return to the lobby.">&larr; Lobby</button>
+        <h2>Sic Bo <span class="tag">three dice</span></h2>
+        <button class="ghost-btn guide-btn" data-guide="sicbo" data-tip="Open the Sic Bo guide.">? GUIDE</button>
+        <div class="pot-pill">Wager <b id="sicboBet">0</b></div>
+      </div>
+
+      <div class="sicbo-table">
+        <div class="dice" id="sicboDice">
+          <div class="die" id="sdie0"></div>
+          <div class="die" id="sdie1"></div>
+          <div class="die" id="sdie2"></div>
+        </div>
+        <div id="sicboMessage" class="table-message">Choose a bet, then roll.</div>
+        <div class="craps-history" id="sicboHistory"></div>
+      </div>
+
+      <div class="bj-controls">
+        <div class="chips" id="sicboChips"></div>
+        <div class="bac-bets">
+          <button class="bac-spot" data-sicbo="small" data-tip="Bet Small: total 4 to 10, triples lose."><span>SMALL</span><small>1:1</small></button>
+          <button class="bac-spot" data-sicbo="big" data-tip="Bet Big: total 11 to 17, triples lose."><span>BIG</span><small>1:1</small></button>
+          <button class="bac-spot" data-sicbo="triple" data-tip="Bet Any Triple: all three dice match."><span>ANY TRIPLE</span><small>30:1</small></button>
+          <button class="bac-spot" data-sicbo="four" data-tip="Bet the total is exactly 4."><span>TOTAL 4</span><small>60:1</small></button>
+          <button class="bac-spot" data-sicbo="seventeen" data-tip="Bet the total is exactly 17."><span>TOTAL 17</span><small>60:1</small></button>
+        </div>
+        <div class="action-row">
+          <button id="sicboRoll" class="primary-btn" data-tip="Rolls the three dice and settles your bet.">ROLL</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="guideOverlay" class="guide-overlay" hidden>
+    <div class="guide-modal" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+      <div class="guide-head">
+        <h3 id="guideTitle">How to play</h3>
+        <button id="guideClose" class="ghost-btn" data-tip="Close this guide and return to the table.">CLOSE</button>
+      </div>
+      <div id="guideBody" class="guide-body"></div>
+    </div>
+  </div>
+
+  <button id="sideToggle" class="side-toggle hidden" data-tip="Open the reference panel for this game.">GUIDE</button>
+  <aside id="sidePanel" class="side-panel" aria-hidden="true" aria-label="Game reference">
+    <div class="side-head">
+      <h3 id="sideTitle">Reference</h3>
+      <button id="sideClose" class="ghost-btn" data-tip="Close the reference panel.">CLOSE</button>
+    </div>
+    <div id="sideLive" class="side-live"></div>
+    <div id="sideBody" class="side-body"></div>
+  </aside>
+
+  <script src="core/wallet.js"></script>
+  <script src="core/cards.js"></script>
+  <script src="core/sound.js"></script>
+  <script src="core/tooltips.js"></script>
+  <script src="games/roulette.js"></script>
+  <script src="games/blackjack.js"></script>
+  <script src="games/poker.js"></script>
+  <script src="games/slots.js"></script>
+  <script src="games/baccarat.js"></script>
+  <script src="games/craps.js"></script>
+  <script src="games/videopoker.js"></script>
+  <script src="games/keno.js"></script>
+  <script src="games/threecard.js"></script>
+  <script src="games/letitride.js"></script>
+  <script src="games/war.js"></script>
+  <script src="games/sicbo.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
