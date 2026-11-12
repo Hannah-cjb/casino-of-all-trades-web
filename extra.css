@@ -1367,6 +1367,979 @@
     scale: 1.16;
   }
 }
+.game-art > * {
+  z-index: 1;
+}
+
+.game-art::after {
+  pointer-events: none;
+}
+
+.card-blackjack .art-suit {
+  animation: blackjackDeal 5.4s cubic-bezier(0.22, 0.8, 0.24, 1) infinite;
+}
+
+.card-blackjack .art-suit:first-child {
+  animation-delay: 0.16s;
+}
+
+.card-blackjack .art-suit:last-child {
+  animation-delay: 0.58s;
+}
+
+.card-blackjack .game-art::after {
+  content: "21";
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(247, 215, 116, 0.7);
+  opacity: 0;
+  animation: blackjackCounter 5.4s ease-in-out infinite;
+}
+
+@keyframes blackjackDeal {
+  0% {
+    opacity: 0;
+    translate: -66px 46px;
+    rotate: -38deg;
+    scale: 0.72;
+  }
+  15% {
+    opacity: 1;
+    translate: 0 -4px;
+    rotate: 0deg;
+    scale: 1.04;
+  }
+  19% {
+    translate: 0 0;
+    scale: 1;
+  }
+  66%,
+  84% {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+  91%,
+  100% {
+    opacity: 0;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes blackjackCounter {
+  0%,
+  56% {
+    opacity: 0;
+    scale: 0.6;
+  }
+  63%,
+  74% {
+    opacity: 1;
+    scale: 1;
+  }
+  88%,
+  100% {
+    opacity: 0;
+    scale: 1;
+  }
+}
+
+.card-poker .art-suit,
+.game-card:hover .card-poker .art-suit {
+  transform: none;
+  z-index: 2;
+}
+
+.card-poker .art-suit {
+  animation: pokerOrbit 6.4s linear infinite;
+}
+
+.card-poker .art-suit:last-child {
+  animation-delay: -3.2s;
+}
+
+.card-poker .game-art::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 58px;
+  height: 58px;
+  margin: -29px 0 0 -29px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, #f7d774 0deg 14deg, #6d4cd8 14deg 28deg);
+  box-shadow: inset 0 0 0 7px #1a1326, inset 0 0 0 9px rgba(247, 215, 116, 0.7),
+    0 0 22px rgba(109, 76, 216, 0.45);
+  opacity: 0.85;
+  animation: pokerChip 7s linear infinite;
+}
+
+@keyframes pokerOrbit {
+  0%,
+  100% {
+    translate: -44px -18px;
+    rotate: -14deg;
+    scale: 0.9;
+  }
+  25% {
+    translate: 12px -35px;
+    rotate: 4deg;
+    scale: 1.06;
+  }
+  50% {
+    translate: 44px 12px;
+    rotate: 14deg;
+    scale: 0.9;
+  }
+  75% {
+    translate: -10px 31px;
+    rotate: -3deg;
+    scale: 1.04;
+  }
+}
+
+@keyframes pokerChip {
+  to {
+    rotate: 1turn;
+  }
+}
+
+.card-roulette .mini-wheel {
+  animation-duration: 18s;
+}
+
+.card-roulette .mini-wheel::before {
+  transform-origin: 6px 45px;
+  animation: rouletteBall 3.8s linear infinite;
+}
+
+.card-roulette .mini-wheel::after {
+  animation: rouletteHub 2.4s ease-in-out infinite;
+}
+
+.game-card:hover .card-roulette .mini-wheel::before {
+  animation-duration: 1.8s;
+}
+
+@keyframes rouletteBall {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes rouletteHub {
+  50% {
+    box-shadow: 0 0 0 2px rgba(247, 215, 116, 0.35), 0 0 22px rgba(247, 215, 116, 0.55);
+  }
+}
+
+.card-slots .art-reels span {
+  animation: slotReel 3.8s cubic-bezier(0.24, 0.8, 0.26, 1) infinite;
+}
+
+.card-slots .art-reels span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.card-slots .art-reels span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+.card-slots .game-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(106deg, transparent 30%, rgba(247, 215, 116, 0.24) 50%, transparent 70%);
+  translate: -32% 0;
+  opacity: 0;
+  animation: slotJackpot 3.8s ease-in-out infinite;
+}
+
+@keyframes slotReel {
+  0%,
+  7% {
+    translate: 0 0;
+    rotate: 0deg;
+    filter: brightness(1);
+  }
+  12% {
+    translate: 0 -13px;
+    rotate: -2deg;
+    filter: brightness(1.35);
+  }
+  16% {
+    translate: 0 8px;
+    rotate: 2deg;
+  }
+  20% {
+    translate: 0 -5px;
+    rotate: -1deg;
+  }
+  24%,
+  66% {
+    translate: 0 0;
+    rotate: 0deg;
+    filter: brightness(1);
+  }
+  73% {
+    filter: brightness(1.3) saturate(1.35);
+    scale: 1.06;
+  }
+  80%,
+  100% {
+    filter: brightness(1);
+    scale: 1;
+  }
+}
+
+@keyframes slotJackpot {
+  0%,
+  62% {
+    opacity: 0;
+    translate: -32% 0;
+  }
+  68% {
+    opacity: 1;
+  }
+  82%,
+  100% {
+    opacity: 0;
+    translate: 32% 0;
+  }
+}
+
+.card-baccarat .art-suit {
+  animation: baccaratFlip 5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.card-baccarat .art-suit:first-child {
+  animation-delay: 0.28s;
+}
+
+.card-baccarat .art-suit:last-child {
+  animation-delay: 0.62s;
+}
+
+.card-baccarat .game-art::after {
+  content: "9";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  translate: -50% -52%;
+  font-size: 92px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(247, 215, 116, 0.1);
+  -webkit-text-stroke: 1px rgba(247, 215, 116, 0.16);
+  animation: baccaratNine 5s ease-in-out infinite;
+}
+
+@keyframes baccaratFlip {
+  0%,
+  6% {
+    opacity: 0.25;
+    scale: 1 0.85;
+    filter: brightness(0.8);
+  }
+  14% {
+    opacity: 1;
+    scale: 1 1.06;
+    translate: 0 -5px;
+    filter: brightness(1.25);
+  }
+  20%,
+  72% {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+    filter: brightness(1);
+  }
+  84%,
+  100% {
+    opacity: 0.2;
+    scale: 1 0.86;
+  }
+}
+
+@keyframes baccaratNine {
+  0%,
+  20% {
+    opacity: 0;
+    scale: 0.7;
+  }
+  34%,
+  64% {
+    opacity: 1;
+    scale: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    scale: 1.14;
+  }
+}
+
+.card-craps .art-die {
+  animation: crapsTumble 4.4s cubic-bezier(0.3, 0.72, 0.28, 1) infinite;
+}
+
+.card-craps .art-die:last-child {
+  animation-delay: 0.34s;
+}
+
+.card-craps .game-art::after {
+  content: "";
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  z-index: 0;
+  width: 164px;
+  height: 18px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.5), transparent 68%);
+  animation: crapsShadow 4.4s ease-in-out infinite;
+}
+
+@keyframes crapsTumble {
+  0%,
+  5% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+  12% {
+    translate: -9px -19px;
+    rotate: -18deg;
+    scale: 1.05;
+  }
+  18% {
+    translate: 7px 2px;
+    rotate: 9deg;
+    scale: 1;
+  }
+  24% {
+    translate: -5px -8px;
+    rotate: -5deg;
+  }
+  30% {
+    translate: 4px 3px;
+    rotate: 3deg;
+  }
+  36%,
+  88% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+  95%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes crapsShadow {
+  0%,
+  100% {
+    opacity: 0.75;
+    scale: 1;
+  }
+  14% {
+    opacity: 0.35;
+    scale: 0.72;
+  }
+  20% {
+    opacity: 0.8;
+    scale: 1.04;
+  }
+  26% {
+    opacity: 0.55;
+    scale: 0.9;
+  }
+  32% {
+    opacity: 0.8;
+    scale: 1;
+  }
+}
+
+.card-videopoker .art-suit {
+  animation: videoGlitch 4.6s steps(1, end) infinite;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+}
+
+.card-videopoker .art-suit:first-child {
+  animation-delay: -0.4s;
+}
+
+.card-videopoker .art-suit:last-child {
+  animation-delay: 0.3s;
+}
+
+.card-videopoker .game-art::after {
+  animation-duration: 2.6s;
+}
+
+@keyframes videoGlitch {
+  0%,
+  56% {
+    opacity: 1;
+    translate: 0 0;
+    filter: none;
+    text-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  }
+  58% {
+    opacity: 0.35;
+    translate: -4px 0;
+    filter: hue-rotate(42deg) brightness(1.9);
+    text-shadow: 2px 0 #ff3b5c, -2px 0 #2ee6ff;
+  }
+  60% {
+    opacity: 1;
+    translate: 3px -1px;
+    filter: none;
+    text-shadow: -2px 0 #ff3b5c, 2px 0 #2ee6ff;
+  }
+  62% {
+    opacity: 0.3;
+    translate: -2px 1px;
+    filter: brightness(1.6);
+    text-shadow: 2px 0 #2ee6ff, -2px 0 #ff3b5c;
+  }
+  64%,
+  88% {
+    opacity: 1;
+    translate: 0 0;
+    filter: none;
+    text-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  }
+  90% {
+    opacity: 0.25;
+  }
+  92%,
+  100% {
+    opacity: 1;
+  }
+}
+
+.card-keno .art-balls span {
+  animation: kenoDrop 4.8s cubic-bezier(0.24, 0.82, 0.3, 1) infinite;
+}
+
+.card-keno .art-balls span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.card-keno .art-balls span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+.card-keno .art-balls span:nth-child(4) {
+  animation-delay: 0.48s;
+}
+
+.card-keno .game-art::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 26px);
+  left: calc(50% - 119px);
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(247, 215, 116, 0.55), inset 0 0 10px rgba(247, 215, 116, 0.25);
+  opacity: 0;
+  animation: kenoPick 4.8s steps(1, end) infinite;
+}
+
+@keyframes kenoDrop {
+  0%,
+  8% {
+    opacity: 0;
+    translate: 0 -64px;
+    scale: 0.78;
+  }
+  11% {
+    opacity: 1;
+  }
+  18% {
+    translate: 0 0;
+    scale: 1;
+  }
+  22% {
+    translate: 0 -10px;
+  }
+  26%,
+  88% {
+    translate: 0 0;
+    scale: 1;
+    opacity: 1;
+  }
+  95%,
+  100% {
+    opacity: 0;
+    translate: 0 -64px;
+    scale: 0.78;
+  }
+}
+
+@keyframes kenoPick {
+  0%,
+  28% {
+    opacity: 0;
+    translate: 0 0;
+  }
+  30%,
+  38% {
+    opacity: 1;
+    translate: 0 0;
+  }
+  40%,
+  48% {
+    opacity: 1;
+    translate: 62px 0;
+  }
+  50%,
+  58% {
+    opacity: 1;
+    translate: 124px 0;
+  }
+  60%,
+  68% {
+    opacity: 1;
+    translate: 186px 0;
+  }
+  70%,
+  73% {
+    opacity: 0;
+    translate: 186px 0;
+  }
+  75%,
+  82% {
+    opacity: 1;
+    translate: 0 0;
+  }
+  84%,
+  100% {
+    opacity: 0;
+    translate: 0 0;
+  }
+}
+
+.card-threecard .art-trio .art-mini {
+  animation: threeCardDeal 5s cubic-bezier(0.22, 0.8, 0.26, 1) infinite;
+}
+
+.card-threecard .art-trio .art-mini:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.card-threecard .art-trio .art-mini:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+.card-threecard .game-art::after {
+  content: "";
+  position: absolute;
+  inset: 12% 6%;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(247, 215, 116, 0.2), transparent 66%);
+  opacity: 0;
+  animation: threeCardGlow 5s ease-in-out infinite;
+}
+
+@keyframes threeCardDeal {
+  0%,
+  5% {
+    opacity: 0;
+    translate: 86px -18px;
+    rotate: 18deg;
+    scale: 0.82;
+  }
+  15% {
+    opacity: 1;
+    translate: 0 -5px;
+    rotate: 0deg;
+    scale: 1.04;
+  }
+  20%,
+  74% {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+  86%,
+  100% {
+    opacity: 0;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes threeCardGlow {
+  0%,
+  40% {
+    opacity: 0;
+    scale: 0.86;
+  }
+  52% {
+    opacity: 1;
+    scale: 1;
+  }
+  70%,
+  100% {
+    opacity: 0;
+    scale: 1.04;
+  }
+}
+
+.card-letitride .art-ride .art-mini:first-child {
+  animation: rideInLeft 3.8s ease-in-out infinite;
+}
+
+.card-letitride .art-ride .art-mini:last-child {
+  animation: rideInRight 3.8s ease-in-out infinite;
+}
+
+.card-letitride .game-art::after {
+  content: "";
+  position: absolute;
+  inset: 30% 4% 4%;
+  z-index: 0;
+  background: radial-gradient(ellipse at center, rgba(53, 199, 111, 0.24), transparent 68%);
+  opacity: 0;
+  animation: rideGlow 3.8s ease-in-out infinite;
+}
+
+@keyframes rideInLeft {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  38% {
+    translate: 11px -2px;
+    rotate: 2deg;
+  }
+  62% {
+    translate: 4px 0;
+    rotate: 1deg;
+  }
+}
+
+@keyframes rideInRight {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  38% {
+    translate: -11px -2px;
+    rotate: -2deg;
+  }
+  62% {
+    translate: -4px 0;
+    rotate: -1deg;
+  }
+}
+
+@keyframes rideGlow {
+  0%,
+  100% {
+    opacity: 0;
+    scale: 0.9;
+  }
+  40% {
+    opacity: 1;
+    scale: 1;
+  }
+  66% {
+    opacity: 0.35;
+    scale: 1.02;
+  }
+}
+
+.card-war .art-war .art-mini:first-child {
+  animation: warChargeLeft 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.card-war .art-war .art-mini:last-child {
+  animation: warChargeRight 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.card-war .art-war em {
+  animation: warImpact 3.2s ease-in-out infinite;
+}
+
+.card-war .game-art::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 124px;
+  height: 124px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(247, 215, 116, 0.62), rgba(229, 56, 59, 0.3) 36%, transparent 70%);
+  opacity: 0;
+  animation: warBurst 3.2s ease-out infinite;
+}
+
+@keyframes warChargeLeft {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+  20% {
+    translate: -9px 0;
+    rotate: -4deg;
+    scale: 0.97;
+  }
+  35% {
+    translate: 15px 0;
+    rotate: 6deg;
+    scale: 1.06;
+  }
+  43% {
+    translate: 4px 0;
+    rotate: 2deg;
+    scale: 1;
+  }
+  58% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes warChargeRight {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+  20% {
+    translate: 9px 0;
+    rotate: 4deg;
+    scale: 0.97;
+  }
+  35% {
+    translate: -15px 0;
+    rotate: -6deg;
+    scale: 1.06;
+  }
+  43% {
+    translate: -4px 0;
+    rotate: -2deg;
+    scale: 1;
+  }
+  58% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes warImpact {
+  0%,
+  20% {
+    scale: 1;
+    opacity: 0.7;
+  }
+  34% {
+    scale: 1.34;
+    opacity: 1;
+  }
+  40% {
+    scale: 0.92;
+    opacity: 1;
+  }
+  50%,
+  100% {
+    scale: 1;
+    opacity: 0.7;
+  }
+}
+
+@keyframes warBurst {
+  0%,
+  30% {
+    opacity: 0;
+    scale: 0.38;
+  }
+  36% {
+    opacity: 0.92;
+    scale: 0.9;
+  }
+  52%,
+  100% {
+    opacity: 0;
+    scale: 1.45;
+  }
+}
+
+.card-sicbo .art-dice-triple .art-die {
+  animation: sicboDrop 4.6s cubic-bezier(0.3, 0.72, 0.28, 1) infinite;
+}
+
+.card-sicbo .art-dice-triple .art-die:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.card-sicbo .art-dice-triple .art-die:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+.card-sicbo .game-art::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 118px;
+  height: 118px;
+  translate: -50% -50%;
+  border: 2px solid rgba(155, 77, 255, 0.65);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(155, 77, 255, 0.35);
+  opacity: 0;
+  animation: sicboRing 4.6s ease-out infinite;
+}
+
+@keyframes sicboDrop {
+  0%,
+  6% {
+    opacity: 0;
+    translate: 0 -48px;
+    rotate: -120deg;
+    scale: 0.72;
+  }
+  14% {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1.06;
+  }
+  19% {
+    translate: 0 -8px;
+    rotate: 4deg;
+    scale: 1;
+  }
+  25%,
+  90% {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+    opacity: 1;
+  }
+  97%,
+  100% {
+    opacity: 0;
+    translate: 0 -48px;
+    rotate: -120deg;
+    scale: 0.72;
+  }
+}
+
+@keyframes sicboRing {
+  0%,
+  32% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  38% {
+    opacity: 0.9;
+    scale: 0.8;
+  }
+  62%,
+  100% {
+    opacity: 0;
+    scale: 1.5;
+  }
+}
+
+@media (max-width: 900px) {
+  .card-keno .game-art::after {
+    top: calc(50% - 18px);
+    left: calc(50% - 81px);
+    width: 36px;
+    height: 36px;
+    animation-name: kenoPickMobile;
+  }
+
+  @keyframes kenoPickMobile {
+    0%,
+    28% {
+      opacity: 0;
+      translate: 0 0;
+    }
+    30%,
+    38% {
+      opacity: 1;
+      translate: 0 0;
+    }
+    40%,
+    48% {
+      opacity: 1;
+      translate: 42px 0;
+    }
+    50%,
+    58% {
+      opacity: 1;
+      translate: 84px 0;
+    }
+    60%,
+    68% {
+      opacity: 1;
+      translate: 126px 0;
+    }
+    70%,
+    73% {
+      opacity: 0;
+      translate: 126px 0;
+    }
+    75%,
+    82% {
+      opacity: 1;
+      translate: 0 0;
+    }
+    84%,
+    100% {
+      opacity: 0;
+      translate: 0 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-art *,
+  .game-art::before,
+  .game-art::after {
+    animation: none;
+  }
+}
 
 /* Keno */
 
